@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+{% for name, properties in stack_services.items() %}
+  {{ name }}:
+{{ properties | to_nice_yaml | indent( width=4, indentfirst=True)  }}
+{% endfor %}
+
+{% if docker_network %}
+networks:
+    default:
+      external:
+        name: {{docker_network}}
+{% endif %}
+
+
+
+
+
+
+

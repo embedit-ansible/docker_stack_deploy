@@ -1,0 +1,16 @@
+---
+- name: Generate compose file for {{ stack_name }}
+  template:
+    src: templates/compose-file.yml.j2
+    dest: /tmp/{{ stack_name }}.yml
+
+- name: Create docker network {{ docker_network }}
+  shell: docker network create --driver overlay {{docker_network}}
+  ignore_errors: yes
+  when: docker_network
+
+- name: start {{ stack_name }} stack
+  shell: docker stack deploy --compose-file /tmp/{{ stack_name }}.yml {{ stack_name }}-{{instance_name}}
+
+- name: Backup compose file
+  copy: remote_src=True src=/tmp/{{ stack_name }}.yml dest=/tmp/{{ stack_name }}-{{ lookup('pipe', 'date +%s') }}.yml

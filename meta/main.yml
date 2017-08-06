@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Mario Vejlupek
+  description: Simple role for deploying stack to docker swarm using variable generated `docker-compose.yml` file.
+  issue_tracker_url: https://github.com/embedit-ansible/docker_stack_deploy/issues
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: EL
+      versions:
+        - all
+  galaxy_tags:
+    - docker
+    - stack
+    - deploy
+dependencies: []
