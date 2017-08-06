@@ -40,7 +40,6 @@ Example Playbook
               image: nginx
             database_server:
               image: arangodb/arangodb
-              hostname: "openam.{{ domain_suffix }}"
               environment:
                 ARANGO_NO_AUTH: 1
               entrypoint: /bin/wait-for-db.sh && /bin/start.sh
